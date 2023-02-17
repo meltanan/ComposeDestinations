@@ -36,16 +36,19 @@ class TopAppBarActivity : ComponentActivity() {
                     mutableStateOf(AppBarState())
                 }
 
+
+
                 Scaffold(
                     topBar = {
-                        TopAppBar(
-                            title = {
-                                Text(text = appBarState.title)
-                            },
-                            actions = {
-                                appBarState.actions?.invoke(this)
-                            }
-                        )
+//                        TopAppBar(
+//                            title = {
+//                                Text(text = appBarState.title)
+//                            },
+//                            actions = {
+//                                appBarState.actions?.invoke(this)
+//                            }
+//                        )
+                        topBar(appBarState)
                     }
                 ) { 
                     Navigation(navController = navController, startDestination = "") {
@@ -56,6 +59,18 @@ class TopAppBarActivity : ComponentActivity() {
             }
         }
     }
+}
+
+@Composable
+fun topBar(u: AppBarState) {
+    TopAppBar(
+        title = {
+            Text(text = u.title)
+        },
+        actions = {
+            u.actions?.invoke(this)
+        }
+    )
 }
 
 @Composable
